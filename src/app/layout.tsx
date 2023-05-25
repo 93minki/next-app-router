@@ -19,7 +19,6 @@ export default function RootLayout({
         className={`${inter.className} m-5 bg-slate-200`}
         suppressHydrationWarning={true}
       >
-        <div>Header</div>
         {children}
       </body>
     </html>
