@@ -1,28 +1,12 @@
 import Avatar from "@/components/atoms/Avatar/Avatar";
 import Button from "@/components/atoms/Button/Button";
 import Text from "@/components/atoms/Text/Text";
+import Header from "@/components/organisms/Header/Header";
 
 export default function Home() {
   return (
     <div>
-      <div
-        id="header"
-        className="flex justify-between border-2 border-slate-800 p-4 items-center rounded-lg"
-      >
-        <div>Logo</div>
-        <div id="menulist" className="flex space-x-4">
-          <div>Menu1</div>
-          <div>Menu2</div>
-        </div>
-        <div>My Page</div>
-        <div className="flex items-center space-x-4">
-          <div
-            id="avatar"
-            className="rounded-full w-10 h-10 bg-orange-300"
-          ></div>
-          <div>오투라인님</div>
-        </div>
-      </div>
+      <Header />
       <div id="mainContainer" className="grid grid-cols-4 h-screen mt-4 gap-3">
         <div id="sidebar" className="flex-col col-span-1 space-y-4">
           <div
@@ -239,7 +223,7 @@ export default function Home() {
                 </div>
               </div>
               <div id="testpaper_list_item" className="grid grid-cols-7 gap-2">
-                <div className="bg-white text-violet-600 text-center mx-12 my-2 rounded-md"></div>
+                <div className="bg-white text-violet-600 text-center w-8 h-8 rounded-md place-items-center m-auto" />
                 <div className="bg-white text-violet-600 text-center px-2 py-2 rounded-md">
                   초등5학년
                 </div>
@@ -259,7 +243,7 @@ export default function Home() {
                 </div>
               </div>
               <div id="testpaper_list_item" className="grid grid-cols-7 gap-2">
-                <div className="bg-white text-violet-600 text-center mx-12 my-2 rounded-md"></div>
+                <div className="bg-white text-violet-600 text-center w-8 h-8 rounded-md place-items-center m-auto" />
                 <div className="bg-white text-violet-600 text-center px-2 py-2 rounded-md">
                   초등5학년
                 </div>
@@ -279,7 +263,7 @@ export default function Home() {
                 </div>
               </div>
               <div id="testpaper_list_item" className="grid grid-cols-7 gap-2">
-                <div className="bg-white text-violet-600 text-center mx-12 my-2 rounded-md"></div>
+                <div className="bg-white text-violet-600 text-center w-8 h-8 rounded-md m-auto" />
                 <div className="bg-white text-violet-600 text-center px-2 py-2 rounded-md">
                   초등5학년
                 </div>
@@ -287,7 +271,7 @@ export default function Home() {
                   시험대비
                 </div>
                 <div className="col-span-2 text-center bg-white text-violet-600 rounded-md px-2 py-2">
-                  초등5학년 2학기 기말대비
+                  중등2학년 2학기 기말대비
                 </div>
                 <div className="bg-white text-violet-600 text-center px-2 py-2 rounded-md">
                   23.05.23
