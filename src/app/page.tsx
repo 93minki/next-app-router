@@ -2,6 +2,7 @@ import Avatar from "@/components/atoms/Avatar/Avatar";
 import Button from "@/components/atoms/Button/Button";
 import Text from "@/components/atoms/Text/Text";
 import Header from "@/components/organisms/Header/Header";
+import UserMembershipInfo from "@/components/organisms/UserMembershipInfo/UserMembershipInfo";
 
 export default function Home() {
   return (
@@ -9,42 +10,7 @@ export default function Home() {
       <Header />
       <div id="mainContainer" className="grid grid-cols-4 h-screen mt-4 gap-3">
         <div id="sidebar" className="flex-col col-span-1 space-y-4">
-          <div
-            id="userInfo"
-            className="border-2 border-slate-800 rounded-lg p-4 h-1/4"
-          >
-            <div className="flex items-center space-x-4">
-              <div
-                id="avatar"
-                className="rounded-full w-10 h-10 bg-orange-300"
-              ></div>
-              <div>오투라인님</div>
-            </div>
-            <div className="flex-col space-y-2">
-              <div className="flex-col mt-4">
-                <p>
-                  <span className="font-bold text-lg">프리미엄 이용권</span>{" "}
-                  사용중
-                </p>
-                <span className="inline-block text-sm text-gray-400">
-                  이용권 유효기간이 7일 남았습니다.
-                </span>
-              </div>
-              <div>
-                <p>
-                  사용가능한 포인트
-                  <span className="ml-2 text-lg font-bold">1300p</span>
-                </p>
-              </div>
-              <div>
-                <p>
-                  보유중인 쿠폰:
-                  <span className="ml-2 text-lg font-bold">5장</span>
-                </p>
-              </div>
-            </div>
-          </div>
-
+          <UserMembershipInfo />
           <div
             id="itemlist"
             className="border-2 pt-8 flex-col space-y-4 border-slate-800 rounded-lg p-4 h-[calc(75%-1rem)]"
