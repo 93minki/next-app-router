@@ -1,3 +1,4 @@
+import Header from "@/components/organisms/Header/Header";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -16,9 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} m-5 bg-slate-200`}
+        className={`${inter.className} p-5 bg-slate-200 `}
         suppressHydrationWarning={true}
       >
+        <Header />
         {children}
       </body>
     </html>
