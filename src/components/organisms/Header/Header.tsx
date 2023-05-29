@@ -1,5 +1,3 @@
-"use client";
-
 import Logo from "@/components/atoms/Logo/Logo";
 import HeaderNav from "@/components/molecules/HeaderNav/HeaderNav";
 import UserAvatarName from "@/components/molecules/UserAvatarName/UserAvatarName";

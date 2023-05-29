@@ -20,7 +20,6 @@ export default function RootLayout({
         className={`${inter.className} p-5 bg-slate-200 `}
         suppressHydrationWarning={true}
       >
-        <Header />
         {children}
       </body>
     </html>
