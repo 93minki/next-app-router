@@ -4,7 +4,15 @@ import TestFolderContainer from "../organisms/TestFolderContainer/TestFolderCont
 import TestPaperContainer from "../organisms/TestPaperContainer/TestPaperContainer";
 import UserMembershipInfo from "../organisms/UserMembershipInfo/UserMembershipInfo";
 
-const DashBoardTemplate = () => {
+interface userInfoProps {
+  userInfo: {
+    name: string;
+    subscription: string;
+  };
+}
+
+const DashBoardTemplate = ({ userInfo }: userInfoProps) => {
+  console.log("name", userInfo.name, "subscription", userInfo.subscription);
   return (
     <div className="grid grid-cols-4 h-[100vh] mt-4 gap-3">
       <div className="flex-col col-span-1 space-y-4">
