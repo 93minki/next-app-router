@@ -1,6 +1,13 @@
 import Text from "@/components/atoms/Text/Text";
 
-const TestFolder = () => {
+interface TestFolderProps {
+  content: {
+    count: number;
+    name: string;
+  };
+}
+
+const TestFolder = ({ content }: TestFolderProps) => {
   return (
     <div className="w-28">
       <div className="flex flex-col items-center border-2 border-slate-500 h-32 rounded-md">
@@ -9,10 +16,10 @@ const TestFolder = () => {
         </Text>
         <div className="text-center">
           <p>시험지 수</p>
-          <Text>10</Text>
+          <Text>{content.count}</Text>
         </div>
       </div>
-      <div className="text-center">중3 1학기</div>
+      <div className="text-center">{content.name}</div>
     </div>
   );
 };
