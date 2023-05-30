@@ -20,39 +20,39 @@ export async function GET() {
         title: "선물이 도착했습니다.",
       },
     },
-    folder: {
-      folder1: {
+    folder: [
+      {
         name: "초등5",
         count: 10,
       },
-      folder2: {
+      {
         name: "중2 중간고사",
         count: 12,
       },
-      folder3: {
+      {
         name: "수능대비",
         count: 20,
       },
-    },
-    paper: {
-      paper1: {
+    ],
+    paper: [
+      {
         grade: "초등5학년",
         title: "초등5학년 2학기 기말대비",
         created_at: "23.05.23",
         tag: "시험대비",
       },
-      paper2: {
+      {
         grade: "초등3학년",
         title: "초등3학년 1학기 기말대비",
         created_at: "23.05.24",
         tag: "주말숙제",
       },
-      paper3: {
+      {
         grade: "초등6학년",
         title: "초등6학년 2학기 중간대비",
         created_at: "23.05.30",
         tag: "수능대비",
       },
-    },
+    ],
   });
 }

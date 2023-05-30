@@ -2,39 +2,33 @@ import TestPaperFilter from "@/components/molecules/TestPaperFilter/TestPaperFil
 import TestPaperTab from "@/components/molecules/TestPaperTab/TestPaperTab";
 import TestPaperTableHeader from "@/components/molecules/TestPaperTableHeader/TestPaperTableHeader";
 import TestPaperItem from "@/components/molecules/TestPaperItem/TestPaperItem";
+import { UserInfoProps } from "@/type/userInfo";
 
-interface TestPaperContainerProps {
-  paper: {
-    paper1: {
-      grade: string;
-      tag: string;
-      title: string;
-      created_at: string;
-    };
-    paper2: {
-      grade: string;
-      tag: string;
-      title: string;
-      created_at: string;
-    };
-    paper3: {
-      grade: string;
-      tag: string;
-      title: string;
-      created_at: string;
-    };
-  };
-}
+const delayFetch = async (
+  url: string,
+  delay: number
+): Promise<UserInfoProps> => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      fetch(url, { cache: "no-cache" })
+        .then((response) => response.json())
+        .then((data) => resolve(data))
+        .catch((error) => reject(error));
+    }, delay);
+  });
+};
 
-const TestPaperContainer = ({ paper }: TestPaperContainerProps) => {
+const TestPaperContainer = async () => {
+  const data = await delayFetch("http://localhost:3000/api/user", 3000);
+  console.log("data.paper!!!!!", data.paper);
   return (
     <div className="flex flex-col space-y-4 py-4 px-4 border-2 border-slate-300 rounded-lg h-full">
       <TestPaperTab />
       <TestPaperFilter />
       <TestPaperTableHeader />
-      <TestPaperItem paper={paper.paper1} />
-      <TestPaperItem paper={paper.paper2}/>
-      <TestPaperItem paper={paper.paper3} />
+      {data.paper.map((item) => {
+        return <TestPaperItem paper={item} />;
+      })}
     </div>
   );
 };

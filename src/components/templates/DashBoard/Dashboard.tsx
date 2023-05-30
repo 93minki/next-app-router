@@ -1,31 +1,33 @@
-import { UserInfoProps } from "@/type/userInfo";
 import CardList from "../../organisms/CardList/CardList";
 import SidePanel from "../../organisms/SidePanel/SidePanel";
 import TestFolderContainer from "../../organisms/TestFolderContainer/TestFolderContainer";
 import TestPaperContainer from "../../organisms/TestPaperContainer/TestPaperContainer";
 import UserMembershipInfo from "../../organisms/UserMembershipInfo/UserMembershipInfo";
+import { Suspense } from "react";
 
-const DashBoardTemplate = ({ userInfo }: UserInfoProps) => {
+const DashBoardTemplate = () => {
   return (
     <div className="grid grid-cols-4 h-[100vh] mt-4 gap-3">
       <div className="flex-col col-span-1 space-y-4">
-        <UserMembershipInfo
-          username={userInfo.name}
-          subscription={userInfo.subscription}
-          point={userInfo.point}
-          coupon={userInfo.coupon}
-        />
+        <Suspense fallback={<div>MembershipInfo Loading...</div>}>
+          {/* @ts-expect-error Server Component */}
+          <UserMembershipInfo />
+        </Suspense>
         <SidePanel />
       </div>
       <div className="flex-col col-span-3 space-y-4">
-        <CardList
-          coupon={userInfo.notice.coupon}
-          subsrciption={userInfo.notice.subscription}
-          present={userInfo.notice.present}
-        />
+        <Suspense fallback={<div>CardList Loading...</div>}>
+          {/* @ts-expect-error Server Component */}
+          <CardList />
+        </Suspense>
         <div className="h-[calc(75%-1rem)] flex flex-col space-y-4 ">
-          <TestFolderContainer folder={userInfo.folder} />
-          <TestPaperContainer paper={userInfo.paper} />
+          <Suspense fallback={<div>TestFolder Loading...</div>}>
+            <TestFolderContainer />
+          </Suspense>
+          <Suspense fallback={<div>TestPaper Loading...</div>}>
+            {/* @ts-expect-error Server Component */}
+            <TestPaperContainer />
+          </Suspense>
         </div>
       </div>
     </div>

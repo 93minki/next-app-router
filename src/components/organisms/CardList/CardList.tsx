@@ -1,26 +1,36 @@
 import NotiCard from "@/components/molecules/NotiCard/NotiCard";
+import { UserInfoProps } from "@/type/userInfo";
 
-interface CardListProps {
-  coupon: {
-    type: string;
-    title: string;
-  };
-  subsrciption: {
-    type: string;
-    title: string;
-  };
-  present: {
-    type: string;
-    title: string;
-  };
-}
+const delayFetch = async (
+  url: string,
+  delay: number
+): Promise<UserInfoProps> => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => resolve(data))
+        .catch((error) => reject(error));
+    }, delay);
+  });
+};
 
-const CardList = ({ coupon, subsrciption, present }: CardListProps) => {
+const CardList = async () => {
+  const data = await delayFetch("http://localhost:3000/api/user", 3000);
   return (
     <div className="flex space-x-2 h-1/4">
-      <NotiCard type={coupon.type} title={coupon.title} />
-      <NotiCard type={subsrciption.type} title={subsrciption.title} />
-      <NotiCard type={present.type} title={present.title} />
+      <NotiCard
+        type={data.notice.coupon.type}
+        title={data.notice.coupon.title}
+      />
+      <NotiCard
+        type={data.notice.subscription.type}
+        title={data.notice.subscription.title}
+      />
+      <NotiCard
+        type={data.notice.present.type}
+        title={data.notice.present.title}
+      />
     </div>
   );
 };
