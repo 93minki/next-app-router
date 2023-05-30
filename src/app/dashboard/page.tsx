@@ -1,4 +1,4 @@
-import DashBoardTemplate from "@/components/Templates/Dashboard";
+import DashBoardTemplate from "@/components/templates/DashBoard/Dashboard";
 
 const DashboardPage = async () => {
   const res = await fetch("http://localhost:3000/api/user");

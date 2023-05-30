@@ -1,8 +1,8 @@
-import CardList from "../organisms/CardList/CardList";
-import SidePanel from "../organisms/SidePanel/SidePanel";
-import TestFolderContainer from "../organisms/TestFolderContainer/TestFolderContainer";
-import TestPaperContainer from "../organisms/TestPaperContainer/TestPaperContainer";
-import UserMembershipInfo from "../organisms/UserMembershipInfo/UserMembershipInfo";
+import CardList from "../../organisms/CardList/CardList";
+import SidePanel from "../../organisms/SidePanel/SidePanel";
+import TestFolderContainer from "../../organisms/TestFolderContainer/TestFolderContainer";
+import TestPaperContainer from "../../organisms/TestPaperContainer/TestPaperContainer";
+import UserMembershipInfo from "../../organisms/UserMembershipInfo/UserMembershipInfo";
 
 interface userInfoProps {
   userInfo: {
