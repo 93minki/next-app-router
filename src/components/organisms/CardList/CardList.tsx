@@ -7,7 +7,7 @@ const delayFetch = async (
 ): Promise<UserInfoProps> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      fetch(url)
+      fetch(url, { cache: "no-cache" })
         .then((response) => response.json())
         .then((data) => resolve(data))
         .catch((error) => reject(error));
