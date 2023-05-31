@@ -16,7 +16,7 @@ const delayFetch = async (
 };
 
 const CardList = async () => {
-  const data = await delayFetch("http://localhost:3000/api/user", 3000);
+  const data = await delayFetch("http://localhost:3000/api/user", 2000);
   return (
     <div className="flex space-x-2 h-1/4">
       <NotiCard

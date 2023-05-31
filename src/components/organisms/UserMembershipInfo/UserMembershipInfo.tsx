@@ -17,7 +17,7 @@ const delayFetch = async (
 };
 
 const UserMembershipInfo = async () => {
-  const data = await delayFetch("http://localhost:3000/api/user", 3000);
+  const data = await delayFetch("http://localhost:3000/api/user", 4000);
   return (
     <div className="border-2 border-slate-800 rounded-lg p-4 h-1/4 2xl:space-y-2">
       <UserAvatarName avatar="" name={data.name} />

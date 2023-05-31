@@ -19,7 +19,7 @@ const delayFetch = async (
 };
 
 const TestPaperContainer = async () => {
-  const data = await delayFetch("http://localhost:3000/api/user", 3000);
+  const data = await delayFetch("http://localhost:3000/api/user", 6000);
   console.log("data.paper!!!!!", data.paper);
   return (
     <div className="flex flex-col space-y-4 py-4 px-4 border-2 border-slate-300 rounded-lg h-full">
