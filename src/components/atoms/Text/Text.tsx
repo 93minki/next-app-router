@@ -1,28 +1,15 @@
-interface TextProps {
-  // size?: "sm" | "md" | "lg";
-  // bold?: boolean;
-  // content?: string;
-  className?: string;
+type Props = {
+  size?: "sm" | "md" | "lg";
+  bold?: "normal" | "semibold" | "bold";
   children: React.ReactNode;
-}
-interface sizeTypes {
-  [key: string]: string;
-}
+};
 
-const Text = ({
-  // size = "md",
-  // bold = false,
-  // content = "text",
-  className = "",
-  children,
-}: TextProps) => {
-  const sizeVariant: sizeTypes = {
-    sm: "text-sm",
-    md: "text-base",
-    lg: "text-lg",
-  };
-
-  return <span className={` ${className} `}>{children}</span>;
+const Text = ({ size = "md", bold = "normal", children }: Props) => {
+  return (
+    <span className={`text-${size} font-${bold} w-full truncate`}>
+      {children}
+    </span>
+  );
 };
 
 export default Text;

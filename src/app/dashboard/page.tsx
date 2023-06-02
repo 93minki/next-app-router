@@ -7,6 +7,8 @@ export async function generateMetadata({}) {
 }
 
 const DashboardPage = () => {
+  // data fetching -> template 
+  // template 
   return <DashBoardTemplate />;
 };
 

@@ -1,6 +1,6 @@
 "use client";
 
-import NavButton from "@/components/atoms/NavButton/NavButton";
+import NavButton from "@/components/atoms/NavItem/NavItem";
 
 interface HeaderNavProps {}
 
