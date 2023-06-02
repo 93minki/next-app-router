@@ -1,38 +1,38 @@
 "use client";
 
-interface ButtonProps {
+type Props = {
   size: "sm" | "md" | "lg";
-  color: "main" | "sub";
-  text: string;
-  onClickHandler?: () => void;
-}
+  active?: true | false;
+  onClick?: () => void;
+  rounded?: "sm" | "md" | "lg" | "full";
+  children: React.ReactNode;
+};
 
-interface sizeTypes {
-  [key: string]: string;
-}
+const Button = ({
+  size = "md",
+  active = false,
+  onClick,
+  rounded = "md",
+  children,
+}: Props) => {
+  let style;
+  if (size === "sm") {
+    style = "p-2 text-sm";
+  } else if (size === "md") {
+    style = "p-2 text-md";
+  } else if (size === "lg") {
+    style = "p-2 text-lg";
+  }
 
-interface colorTypes {
-  [key: string]: string;
-}
-
-const Button = ({ size, color, text, onClickHandler }: ButtonProps) => {
-  const sizeVariants: sizeTypes = {
-    sm: "w-20 h-5",
-    md: "w-30 h-10",
-    lg: "w-50 h-15",
-  };
-
-  const colorVariants: colorTypes = {
-    main: "bg-blue-700",
-    sub: "bg-blue-200",
-  };
+  if (active) {
+    style += " bg-blue-200";
+  } else {
+    style += " bg-gray-200";
+  }
 
   return (
-    <button
-      onClick={onClickHandler}
-      className={`${colorVariants[color]} ${sizeVariants[size]} ml-10  `}
-    >
-      {text}
+    <button onClick={onClick} className={`${style} rounded-${rounded} `}>
+      {children}
     </button>
   );
 };

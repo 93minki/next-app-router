@@ -15,11 +15,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.className}>
       <body
-        className={`${inter.className} p-5 bg-slate-200 `}
+        className={`w-full max-w-screen-xl flex flex-col m-auto`}
         suppressHydrationWarning={true}
       >
+        {/* <main className="grow">{children}</main> */}
         {children}
       </body>
     </html>
