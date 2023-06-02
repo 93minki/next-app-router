@@ -20,7 +20,7 @@ const delayFetch = async (
 };
 
 const TestPaperContainer = async () => {
-  const data = await delayFetch("http://localhost:3000/api/user", 6000);
+  const data = await delayFetch("http://localhost:3000/api/user", 600);
   const ttt = await axios.get("http://localhost:3000/api/user");
   console.log("ttt", ttt);
   console.log("data.paper!!!!!", data.paper);

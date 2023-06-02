@@ -18,7 +18,6 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${inter.className} p-5 bg-slate-200 `}
-        suppressHydrationWarning={true}
       >
         {children}
       </body>

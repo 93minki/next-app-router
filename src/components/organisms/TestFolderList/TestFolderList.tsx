@@ -16,7 +16,7 @@ const delayFetch = async (
 };
 
 const TestFolderList = async () => {
-  const data = await delayFetch("http://localhost:3000/api/user", 5000);
+  const data = await delayFetch("http://localhost:3000/api/user", 500);
   return (
     <div className="py-8 px-8 flex space-x-8">
       {data.folder.map((item) => {

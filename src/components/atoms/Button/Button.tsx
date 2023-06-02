@@ -1,7 +1,7 @@
+"use client";
 interface ButtonProps {
   size: "sm" | "md" | "lg";
   isActive?: true | false;
-  text: string;
   rounded?: "sm" | "md" | "lg" | "full";
   onClickHandler?: () => void;
   children: React.ReactNode;
