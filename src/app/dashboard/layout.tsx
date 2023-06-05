@@ -6,11 +6,9 @@ export default async function DashboardLayout({
 }: {
   children: ReactNode;
 }) {
-  const res = await fetch("http://localhost:3000/api/user");
-  const json = await res.json();
   return (
     <>
-      <Header userInfo={json} />
+      <Header />
       {children}
     </>
   );

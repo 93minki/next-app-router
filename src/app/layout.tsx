@@ -1,6 +1,6 @@
-import Header from "@/components/organisms/Header/Header";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import Providers from "@/redux/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} p-5 bg-slate-200 h-screen `}>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

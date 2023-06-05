@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { useSelector } from "react-redux";
 
 type DashBoardTemplateProps = {
   sideArea: React.ReactNode;
@@ -29,31 +30,5 @@ const DashBoardTemplate = ({
       </main>
     </div>
   );
-  // return (
-  //   <div className="grid grid-cols-4 h-[100vh] mt-4 gap-3">
-  //     <div className="flex-col col-span-1 space-y-4">
-  //       <Suspense fallback={<div>MembershipInfo Loading...</div>}>
-  //         {/* @ts-expect-error Server Component */}
-  //         <UserMembershipInfo />
-  //       </Suspense>
-  //       <SidePanel />
-  //     </div>
-  //     <div className="flex-col col-span-3 space-y-4">
-  //       <Suspense fallback={<div>CardList Loading...</div>}>
-  //         {/* @ts-expect-error Server Component */}
-  //         <CardList />
-  //       </Suspense>
-  //       <div className="h-[calc(75%-1rem)] flex flex-col space-y-4 ">
-  //         <Suspense fallback={<div>TestFolder Loading...</div>}>
-  //           <TestFolderContainer />
-  //         </Suspense>
-  //         <Suspense fallback={<div>TestPaper Loading...</div>}>
-  //           {/* @ts-expect-error Server Component */}
-  //           <TestPaperContainer />
-  //         </Suspense>
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
 };
 export default DashBoardTemplate;

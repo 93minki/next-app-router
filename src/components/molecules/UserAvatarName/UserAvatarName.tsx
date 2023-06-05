@@ -1,14 +1,17 @@
-// avatar, username prop으로 받아야함.
-interface UserAvatarNameProps {
-  avatar: string;
-  name: string;
-}
+"use client";
+import { RootState } from "@/redux/store";
+import { User } from "@/redux/store/slice/userSlice";
+import { useSelector } from "react-redux";
 
-const UserAvatarName = ({ avatar, name }: UserAvatarNameProps) => {
+const UserAvatarName = () => {
+  const userInfo = useSelector((state: RootState) => {
+    return state.user.userData as User;
+  });
+
   return (
     <div className="flex items-center space-x-4">
-      <div className="rounded-full w-10 h-10 bg-orange-300">{avatar}</div>
-      <div>{name}</div>
+      <div className="rounded-full w-10 h-10 bg-orange-300">{}</div>
+      <div>{userInfo.username}</div>
     </div>
   );
 };
