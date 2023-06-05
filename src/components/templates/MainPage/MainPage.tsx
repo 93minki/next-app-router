@@ -1,9 +1,8 @@
 "use client";
 import { useForm, SubmitHandler } from "react-hook-form";
+import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useDispatch, useSelector, useStore } from "react-redux";
-import { asyncUserLogin } from "@/redux/store/slice/userSlice";
-import { RootState } from "@/redux/store";
+import useSWR from "swr";
 
 type Inputs = {
   email: string;
@@ -11,26 +10,41 @@ type Inputs = {
 };
 
 const MainPage = () => {
-  const router = useRouter();
-  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors, isSubmitting },
   } = useForm<Inputs>();
+  const router = useRouter();
   const onSubmit: SubmitHandler<Inputs> = async (inputData) => {
     try {
       // TypeScript 문제...
-      dispatch<any>(asyncUserLogin(inputData));
+      const res = await axios.post("http://localhost:1337/api/auth/local", {
+        identifier: inputData.email,
+        password: inputData.password,
+      });
+
+      // 함수 컴포넌트 에서만 SWR을 쓸 수 있음 동적인 이벤트 핸들러 내부에서 사용 불가
+      // const swrData = useSWR(["api/auth/local", inputData], async (params) => {
+      //   const res = await axios.post(`http://localhost:1337${params[0]}`, {
+      //     identifier: params[1].email,
+      //     password: params[1].password,
+      //   });
+      //   return res.data;
+      // });
+      // console.log("swrData", swrData)
+
+      // 여기서 로그인에 성공하면 토큰을 어딘가 저장하고 dashboard로 이동하게만 하면 될듯?
+      // 유저 정보를 검증하고 사용하는 건 dashboard에서
+
+      const { jwt } = res.data;
+      localStorage.setItem("jwt", jwt);
       router.push("/dashboard");
     } catch (error) {
       console.error(error);
     }
   };
-  const status = useSelector((state: RootState) => {
-    return state.user.status;
-  });
 
   return (
     <div className="w-1/2 text-center my-0 mx-auto h-screen flex flex-col justify-center">

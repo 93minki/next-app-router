@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { useSelector } from "react-redux";
 
 type DashBoardTemplateProps = {
   sideArea: React.ReactNode;
