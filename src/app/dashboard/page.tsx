@@ -12,7 +12,6 @@ export async function generateMetadata({}) {
 }
 
 const DashboardPage = () => {
-  console.log("dashboard!");
   return (
     <DashBoardTemplate
       sideArea={<SidePanel />}

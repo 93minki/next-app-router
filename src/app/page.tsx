@@ -1,9 +1,5 @@
-import Link from "next/link";
+import MainPage from "@/components/templates/MainPage/MainPage";
 
 export default async function Home() {
-  return (
-    <div className=" w-full h-screen text-center leading-[100vh]">
-      <Link href="/dashboard">Click to move Dashboard!</Link>
-    </div>
-  );
+  return <MainPage />;
 }
