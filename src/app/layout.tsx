@@ -1,5 +1,7 @@
+import Providers from "@/redux/provider";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import QueryProvider from "@/react-query/QueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,10 +16,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} p-5 bg-slate-200 h-screen `}>
-        {children}
-      </body>
-    </html>
+    <QueryProvider>
+      <html lang="en">
+        <body className={`${inter.className} p-5 bg-slate-200 h-screen `}>
+          <Providers>{children}</Providers>
+        </body>
+      </html>
+    </QueryProvider>
   );
 }

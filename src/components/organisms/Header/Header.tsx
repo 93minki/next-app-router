@@ -4,7 +4,7 @@ import Logo from "@/components/atoms/Logo/Logo";
 import NavLow from "@/components/molecules/NavLow/NavLow";
 import UserAvatarName from "@/components/molecules/UserAvatarName/UserAvatarName";
 import axios from "axios";
-
+import { useRouter } from "next/navigation";
 import useSWR from "swr";
 /**
  * "use Client"를 사용하면 하위에 있는 자식 컴포넌트도 모두 Client 컴포넌트가 되는가?
@@ -47,14 +47,8 @@ const fetcher = async (params: string[]) => {
 };
 
 const Header = () => {
-  const jwt = localStorage.getItem("jwt");
-  // const router = useRouter();
-  if (!jwt) {
-    alert("로그인 부터하세요");
-    // router.push("/");
-  }
-  const { data, error } = useSWR(["/api/users/me", jwt], fetcher);
-  console.log("SWR Data", data);
+  // const { data, error } = useSWR(["/api/users/me", jwt], fetcher);
+  // console.log("SWR Data", data);
   return (
     <header className="flex justify-between border-2 border-slate-800 p-4 items-center rounded-lg">
       <Logo />

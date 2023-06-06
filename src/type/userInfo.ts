@@ -52,3 +52,33 @@ export interface UserInfoProps {
     }
   ];
 }
+
+export interface LoginResponse {
+  jwt: string;
+  user: UserInfo;
+}
+export interface UserInfo {
+  id: number;
+  username: string;
+  email: string;
+  provider: string;
+  confirmed: boolean;
+  blocked: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  point: string;
+  subscription: string;
+  coupon: number;
+  notice: Notice;
+}
+
+export interface Notice {
+  coupon: Coupon;
+  subscription: Coupon;
+  present: Coupon;
+}
+
+export interface Coupon {
+  type: string;
+  title: string;
+}
