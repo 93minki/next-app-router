@@ -3,6 +3,8 @@ import { Suspense } from "react";
 import useSWR from "swr";
 import { cookies, headers } from "next/headers";
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../../lib/auth";
 
 type DashBoardTemplateProps = {
   sideArea: React.ReactNode;
@@ -11,14 +13,16 @@ type DashBoardTemplateProps = {
   testArea: React.ReactNode;
 };
 
-const DashBoardTemplate = ({
+const DashBoardTemplate = async ({
   sideArea,
   noticeArea,
   testFolderArea,
   testArea,
 }: DashBoardTemplateProps) => {
   const response = NextResponse.next();
-  console.log(response.cookies.get("jwt"));
+  console.log("response cookie", response.cookies.get("jwt"));
+  const session = await getServerSession(authOptions);
+  console.log("session", session);
   // const { data, error } = useSWR("/api/users/me", async (url) => {
   //   const res = await axios.get(`http://localhost:1337${url}`, {
   //     headers: {

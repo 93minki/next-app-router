@@ -1,3 +1,6 @@
+"use client";
+
+import { signIn } from "next-auth/react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type Inputs = {
@@ -9,7 +12,30 @@ interface LoginFormProps {
   loginHandler: (inputs: Inputs) => void;
 }
 
-const LoginForm = ({ loginHandler }: LoginFormProps) => {
+const LoginForm = () => {
+  const loginHandler = async (inputs: Inputs) => {
+    try {
+      const res = await signIn("credentials", {
+        email: inputs.email,
+        password: inputs.password,
+      });
+
+      // const res = await axios.post("/api/auth/login", {
+      //   identifier: inputs.email,
+      //   password: inputs.password,
+      // });
+      // const response = NextResponse.next();
+      // response.cookies.set("jwt", res.data.jwt);
+      // setCookie("jwt", res.data.jwt, {
+      //   httpOnly: false,
+      //   secure: false,
+      // });
+      // router.push("/dashboard");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const {
     register,
     handleSubmit,
