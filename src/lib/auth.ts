@@ -4,7 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions: NextAuthOptions = {
   pages: {
-    signIn: "/dashboard",
+    signIn: "/login",
   },
   session: {
     strategy: "jwt",
@@ -23,8 +23,9 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         console.log("credentials", credentials);
         try {
+
           const response = await axios.post(
-            "http://localhost:1337/api/auth/local",
+            "http://127.0.0.1:1337/api/auth/local",
             {
               identifier: credentials?.email,
               password: credentials?.password,
