@@ -22,7 +22,6 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        console.log("credentials", credentials);
         try {
           const response = await axios.post(
             "http://127.0.0.1:1337/api/auth/local",
@@ -31,7 +30,6 @@ export const authOptions: NextAuthOptions = {
               password: credentials?.password,
             }
           );
-          console.log("response data", response.data);
           return response.data;
         } catch (error) {
           console.error("API Call Error", error);
@@ -42,25 +40,26 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     session: async ({ session, token }) => {
-      console.log("session", session);
-      console.log("token", token);
       return {
         ...session,
+        user: {
+          id: token.id,
+          email: token.email,
+        },
         jwt: token.jwt as unknown as any,
-        user: token.user as unknown as any,
+        userInfo: token.user as unknown as any,
       };
     },
     jwt: async ({ token, user, session }) => {
       // const { jwt, user: userInfo } = user;
 
-      console.log("tokennnn", token);
-
       if (user) {
         // const { jwt, user: userInfo } = user;
         const u = user as unknown as any;
-        console.log("uuuuuu", u);
         return {
           ...token,
+          id: u.user.id,
+          email: u.user.email,
           jwt: u.jwt,
           user: {
             ...u.user,

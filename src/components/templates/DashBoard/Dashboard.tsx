@@ -22,8 +22,7 @@ const DashBoardTemplate = async ({
   testArea,
 }: DashBoardTemplateProps) => {
   const session: CustomSession | null = await getServerSession(authOptions);
-  console.log("hello session", session);
-
+  console.log("Dashboard session:", session);
   if (session) {
     console.log("session jwt", session.jwt);
     const getAPI = await axios.get("http://127.0.0.1:1337/api/users/me", {
@@ -52,7 +51,6 @@ const DashBoardTemplate = async ({
   //   let data = await rrrrr.json();
   //   console.log("fetch data", data);
   // }
-
 
   // 카카오 로그인을 하면 id랑, avatar 이미지 같은걸 받아오고
   // 우리 서버에 id같은걸로 요청하면, 우리 서버에서 우리 DB에 데이터 요청
