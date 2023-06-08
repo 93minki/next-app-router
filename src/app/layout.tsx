@@ -1,4 +1,5 @@
 import Providers from "@/redux/provider";
+import NextAuthProvider from "./providers";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -9,8 +10,6 @@ export const metadata = {
   description: "Bank Of Problems",
 };
 
-
-
 export default function RootLayout({
   children,
 }: {
@@ -19,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} p-5 bg-slate-200 h-screen `}>
-        <Providers>{children}</Providers>
+        <NextAuthProvider>{children}</NextAuthProvider>
       </body>
     </html>
   );

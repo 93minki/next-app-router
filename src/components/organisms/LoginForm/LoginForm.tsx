@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import { signIn } from "next-auth/react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
@@ -15,10 +16,24 @@ interface LoginFormProps {
 const LoginForm = () => {
   const loginHandler = async (inputs: Inputs) => {
     try {
-      const res = await signIn("credentials", {
-        email: inputs.email,
-        password: inputs.password,
+      // const res = await signIn("credentials", {
+      //   email: inputs.email,
+      //   password: inputs.password,
+      //   callbackUrl: "/dashboard",
+      // });
+      // console.log("signin res", res);
+
+      const res = await axios.get("http://127.0.0.1:1337/api/users/me", {
+        // headers: {
+          
+        //   Authorization:
+        //     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjg1OTU2NTQxLCJleHAiOjE2ODg1NDg1NDF9.wEmtHC7UM1_ATfw93QfNehtWAFHhz9VytkGburlp-Jk",
+        
+        // },
+      
       });
+
+      console.log("res result", res.data);
 
       // const res = await axios.post("/api/auth/login", {
       //   identifier: inputs.email,

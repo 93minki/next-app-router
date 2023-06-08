@@ -1,10 +1,8 @@
-import axios from "axios";
 import { Suspense } from "react";
-import useSWR from "swr";
-import { cookies, headers } from "next/headers";
-import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
+import { Session, getServerSession } from "next-auth";
 import { authOptions } from "../../../lib/auth";
+import axios from "axios";
+import { UserInfo } from "@/type/userInfo";
 
 type DashBoardTemplateProps = {
   sideArea: React.ReactNode;
@@ -13,36 +11,32 @@ type DashBoardTemplateProps = {
   testArea: React.ReactNode;
 };
 
+interface CustomSession extends Session {
+  jwt: string;
+  user: UserInfo;
+}
 const DashBoardTemplate = async ({
   sideArea,
   noticeArea,
   testFolderArea,
   testArea,
 }: DashBoardTemplateProps) => {
-  const response = NextResponse.next();
-  console.log("response cookie", response.cookies.get("jwt"));
-  const session = await getServerSession(authOptions);
-  console.log("session", session);
-  // const { data, error } = useSWR("/api/users/me", async (url) => {
-  //   const res = await axios.get(`http://localhost:1337${url}`, {
-  //     headers: {
-  //       Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjg1OTc5NDk2LCJleHAiOjE2ODg1NzE0OTZ9.LczUZmn46t3_RiLP_mEf9q-aJhxDo-oGk6COWVrAXEU`,
-  //     },
-  //   });
-  //   return res.data;
-  // });
-  // console.log("data", data);
+  const session: CustomSession | null = await getServerSession(authOptions);
+  console.log("hello session", session);
 
-  const getAPI = await axios.get(
-    "http://127.0.0.1:1337/api/users/me"
-    // {
-    //   headers: {
-    //     Authorization:
-    //       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjg1OTc5NDk2LCJleHAiOjE2ODg1NzE0OTZ9.LczUZmn46t3_RiLP_mEf9q-aJhxDo-oGk6COWVrAXEU",
-    //   },
-    // }
-  );
-  console.log("getAPPI", getAPI.data);
+  if (session) {
+    console.log("session jwt", session.jwt);
+    const getAPI = await axios.get("http://127.0.0.1:1337/api/users/me", {
+      headers: {
+        Authorization: `Bearer ${session.jwt}`,
+      },
+    });
+    console.log("getAPPI", getAPI.data);
+  }
+
+  // 1. Authorization에 Bearer 토큰 자동 추가 방법이 있는지 없는지, 있다면 찾아보기 없다면 저렇게 그냥 쓰고 근데 있을듯
+  // 2. useSWR 사용해서, // useSession(loading,,,) next-auth 로그인할 때 토큰 정보 가져오기
+  // next-auth (Login) -> Dashboard에서 useSWR로 userInfo를 캐싱한다.
 
   // let headersList = {
   //   Accept: "*/*",
@@ -50,13 +44,18 @@ const DashBoardTemplate = async ({
   //   Authorization:
   //     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjg1OTU2NTQxLCJleHAiOjE2ODg1NDg1NDF9.wEmtHC7UM1_ATfw93QfNehtWAFHhz9VytkGburlp-Jk",
   // };
+  // if (session) {
+  //   let rrrrr = await fetch("http://127.0.0.1:1337/api/users/me", {
+  //     method: "GET",
+  //   });
 
-  // let rrrrr = await fetch("http://localhost:1337/api/users/me", {
-  //   method: "GET",
-  // });
+  //   let data = await rrrrr.json();
+  //   console.log("fetch data", data);
+  // }
 
-  // let data = await rrrrr.text();
-  // console.log(data);
+
+  // 카카오 로그인을 하면 id랑, avatar 이미지 같은걸 받아오고
+  // 우리 서버에 id같은걸로 요청하면, 우리 서버에서 우리 DB에 데이터 요청
 
   return (
     <div className="md:flex justify-between my-5 gap-5">
