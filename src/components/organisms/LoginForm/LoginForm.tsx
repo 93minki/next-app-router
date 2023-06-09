@@ -19,7 +19,7 @@ const LoginForm = () => {
       const res = await signIn("credentials", {
         email: inputs.email,
         password: inputs.password,
-        // callbackUrl: "/dashboard",
+        callbackUrl: "/dashboard",
       });
       console.log("signin res", res);
     } catch (error) {

@@ -3,7 +3,10 @@
 import Logo from "@/components/atoms/Logo/Logo";
 import NavLow from "@/components/molecules/NavLow/NavLow";
 import UserAvatarName from "@/components/molecules/UserAvatarName/UserAvatarName";
+import { UserInfo } from "@/type/userInfo";
 import axios from "axios";
+import { Session } from "next-auth";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import useSWR from "swr";
 /**
@@ -37,6 +40,11 @@ export interface Coupon {
   title: string;
 }
 
+interface CustomSession extends Session {
+  jwt: string;
+  user: UserInfo;
+}
+
 const fetcher = async (params: string[]) => {
   const res = await axios.get<UserDatas>(`http://localhost:1337${params[0]}`, {
     headers: {
@@ -49,18 +57,26 @@ const fetcher = async (params: string[]) => {
 const Header = () => {
   // const { data, error } = useSWR(["/api/users/me", jwt], fetcher);
   // console.log("SWR Data", data);
+  const { data: session, status } = useSession();
+  console.log("session status", status);
+
   return (
     <header className="flex justify-between border-2 border-slate-800 p-4 items-center rounded-lg">
       <Logo />
       <NavLow />
       <UserAvatarName />
       <button
-        onClick={async () => {
-          const userme = axios.get("http://127.0.0.1:1337/api/users/me");
-          console.log("userme!!!", userme);
+        onClick={() => {
+          signOut({ callbackUrl: "/login" });
+          // const userme = await axios.get("http://127.0.0.1:1337/api/users/me", {
+          //   headers: {
+          //     Authorization: `Bearer ${session.jwt}`,
+          //   },
+          // });
+          // console.log("userme!!!", userme);
         }}
       >
-        Click
+        logout
       </button>
     </header>
   );

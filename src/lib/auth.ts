@@ -46,7 +46,7 @@ export const authOptions: NextAuthOptions = {
           id: token.id,
           email: token.email,
         },
-        jwt: token.jwt as unknown as any,
+        jwt: token.jwt,
         userInfo: token.user as unknown as any,
       };
     },
